@@ -22,7 +22,7 @@ export default function App() {
   const [editedPost, setEditedPost] = useState<Post | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["posts", searchQuery, currentPage],
     queryFn: () => fetchPosts(searchQuery, currentPage, LIMIT),
   });
@@ -62,6 +62,8 @@ export default function App() {
           Create post
         </button>
       </header>
+      {isLoading && <p>Loading, please wait...</p>}
+      {isError && <p>Something went wrong!!!</p>}
       {isModalOpen && (
         <Modal onClose={handleCloseModal}>
           {isEditPost && editedPost && (

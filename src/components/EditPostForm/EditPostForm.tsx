@@ -23,6 +23,10 @@ export default function EditPostForm({ initialValues, onClose }: EditPostFormPro
     mutationFn: editPost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
+      alert("Post edited successfully!");
+    },
+    onError: (error) => {
+      console.log("Error", error);
     },
   });
 

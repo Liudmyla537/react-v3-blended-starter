@@ -15,6 +15,10 @@ export default function PostList({ posts, handleEdit, toggleModal }: PostListPro
     mutationFn: (id: number) => deletePost(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
+      alert("Post deleted successfully!");
+    },
+    onError: (error) => {
+      console.log("Error", error);
     },
   });
 

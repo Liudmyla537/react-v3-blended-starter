@@ -33,6 +33,10 @@ export default function CreatePostForm({ onCancel }: CreatePostFormProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
       onCancel();
+      alert("Post created successfully!");
+    },
+    onError: (error) => {
+      console.log("Error", error);
     },
   });
 
